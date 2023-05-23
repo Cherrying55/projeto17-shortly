@@ -23,8 +23,11 @@ export async function postShorten (req,res){
         const short = nanoid();
         const post = await db.query(`
         INSERT INTO links (url, userId, shortUrl, visitCount) VALUES ($1, $2, $3, $4)
-        `, [url, session.rows[0].userid, short, 0])
-        return res.sendStatus(201);
+        `, [url, session.rows[0].userid, short, 0]);
+        const pegarid = await db.query(`
+        SELECT * FROM links WHERE url=$1`,[url]);
+
+        return res.send({id: pegarid.rows[0].id, shortUrl: short}).status(201);
         
     } catch (error) {
         return res.status(500).send(err.message);
