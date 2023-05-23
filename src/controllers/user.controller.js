@@ -24,7 +24,7 @@ export async function signUp (req,res){
         return res.sendStatus(201);
     }
     catch(err){
-
+        return res.status(500).send(err.message);
     }
 
     
@@ -58,7 +58,7 @@ export async function signIn(req,res){
         }
 
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 
 }
@@ -103,7 +103,7 @@ export async function getUserData (req,res){
         return res.send(obj)
         
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 }
 
@@ -127,7 +127,7 @@ export async function getRanking (req,res){
         res.send(ranks.rows).status(200);
 
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 }
 

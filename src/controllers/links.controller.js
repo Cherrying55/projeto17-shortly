@@ -27,7 +27,7 @@ export async function postShorten (req,res){
         return res.sendStatus(201);
         
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 }
 
@@ -45,7 +45,7 @@ export async function getUrlbyId(req,res){
         return res.send({id: url.id, shortUrl: url.shorturl, url: url.url }).status(200);
 
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 }
 
@@ -84,7 +84,7 @@ export async function deleteURL (req,res){
 
         
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 
 }
@@ -113,7 +113,7 @@ export async function openURL(req,res){
         
 
     } catch (error) {
-        
+        return res.status(500).send(err.message);
     }
 
 }
